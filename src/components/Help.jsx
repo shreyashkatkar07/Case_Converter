@@ -1,8 +1,10 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/display-name */
 import React from "react";
 
-export default function Help() {
+export const Help = React.memo((props) => {
   return (
-    <>
+    <div className="my-3 text-center">
       <h1>Help us</h1>
       <p>
         First of all, thank you for considering helping out Case-Converter! A
@@ -23,25 +25,59 @@ export default function Help() {
       <br />
       <h3>2. Share with your friends</h3>
       <p>
-        Help get the word out about Word Counter. Share us on one of your
+        Help get the word out about Case Converter. Share us on one of your
         favorite social media sites.
       </p>
-      <button type="button" className="btn btn-primary my-1">
+
+      <a
+        href="https://web.whatsapp.com/"
+        className="btn btn-primary m-2"
+        role="button"
+        target="_blank"
+        rel="noreferrer"
+      >
         WhatsApp
-      </button>
-      <button type="button" className="btn btn-primary my-1 mx-2">
-        Twitter
-      </button>
-      <button type="button" className="btn btn-primary my-1">
+      </a>
+
+      <a
+        href="https://www.instagram.com/"
+        className="btn btn-primary m-2"
+        role="button"
+        target="_blank"
+        rel="noreferrer"
+      >
         Instagram
-      </button>
+      </a>
+      <a
+        href="https://twitter.com/"
+        className="btn btn-primary m-2"
+        role="button"
+        target="_blank"
+        rel="noreferrer"
+      >
+        Twitter
+      </a>
       <br />
       <br />
       <h3>3. Have a blog? Write a review!</h3>
       <p>
-        Write a review about how WordCounter helps you out on a day to day
+        Write a review about how Case Converter helps you out on a day to day
         basis.
       </p>
-    </>
+      <textarea
+        name="review"
+        id="review"
+        cols={80}
+        rows={5}
+        placeholder="Write a review here..."
+        className={`p-2`}
+        style={{
+          backgroundColor: props.mode === "light" ? "white" : "#343a40",
+          border:
+            props.mode === "light" ? "1px solid #343a40" : "1px solid white",
+          color: props.mode === "light" ? "#343a40" : "white",
+        }}
+      ></textarea>
+    </div>
   );
-}
+});

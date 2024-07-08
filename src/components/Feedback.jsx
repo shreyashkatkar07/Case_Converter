@@ -1,25 +1,25 @@
-import React from "react";
+/* eslint-disable react/display-name */
+/* eslint-disable react/prop-types */
+import React, { useEffect } from "react";
 
-export default function Contact() {
-  const exampleModal = document.getElementById("exampleModal");
-  if (exampleModal) {
-    exampleModal.addEventListener("show.bs.modal", () => {
-      // Button that triggered the modal
-      //   const button = event.relatedTarget;
-      // Extract info from data-bs-* attributes
-      //   const recipient = button.getAttribute("data-bs-whatever");
-      // If necessary, you could initiate an Ajax request here
-      // and then do the updating in a callback.
-      // Update the modal's content.
-      const modalTitle = exampleModal.querySelector(".modal-title");
-      //   const modalBodyInput = exampleModal.querySelector(".modal-body input");
-      modalTitle.textContent =
-        "Feedback request - Have some ideas how to improve our website? Give us your feedback.";
-      //   modalBodyInput.value = recipient;
-    });
-  }
+export const Contact = React.memo((props) => {
+  const cardStyle = {
+    backgroundColor: props.mode === "light" ? "white" : "#343a40",
+    color: props.mode === "light" ? "#343a40" : "white",
+    borderColor: props.mode === "light" ? "#343a40" : "white",
+  };
+  useEffect(() => {
+    const exampleModal = document.getElementById("exampleModal");
+    if (exampleModal) {
+      exampleModal.addEventListener("show.bs.modal", () => {
+        const modalTitle = exampleModal.querySelector(".modal-title");
+        modalTitle.textContent =
+          "Your Ideas Matter - Help Us Improve Our Website! Share Your Feedback With Us.";
+      });
+    }
+  }, []);
   return (
-    <>
+    <div>
       <button
         type="button"
         className="btn btn-primary my-2"
@@ -29,19 +29,19 @@ export default function Contact() {
       >
         Feedback
       </button>
-
       <div
-        className="modal fade"
+        className="modal fade text-start"
         id="exampleModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
         <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title fs-5"></h5>
+          <div className="modal-content" style={cardStyle}>
+            <div className="modal-header" style={cardStyle}>
+              <h5 className="modal-title fs-5">Feedback Form</h5>
               <button
+                style={cardStyle}
                 type="button"
                 className="btn-close"
                 data-bs-dismiss="modal"
@@ -51,21 +51,23 @@ export default function Contact() {
             <div className="modal-body">
               <form>
                 <div className="mb-3">
-                  <label for="recipient-name" className="col-form-label">
-                    Your Name :
+                  <label htmlFor="recipient-name" className="col-form-label">
+                    Your Email :
                   </label>
                   <input
+                    style={cardStyle}
                     type="text"
                     className="form-control"
                     id="recipient-name"
-                    placeholder="Enter your name"
+                    placeholder="Enter your email address here..."
                   />
                 </div>
                 <div className="mb-3">
-                  <label for="message-text" className="col-form-label">
+                  <label htmlFor="message-text" className="col-form-label">
                     Your Message :
                   </label>
                   <textarea
+                    style={cardStyle}
                     className="form-control"
                     id="message-text"
                     placeholder="Remember...your opinion matters"
@@ -88,6 +90,6 @@ export default function Contact() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
-}
+});
